@@ -65,6 +65,8 @@ const images = [
 ];
 
 const list = document.querySelector(".gallery");
+const gallery = document.querySelector("ul.gallery");
+const image = document.querySelector(".gallery-image");
 
 const createMarkup = (images) => {
   return `<li class="gallery-item">
@@ -82,3 +84,8 @@ const createMarkup = (images) => {
 
 const markup = images.map(createMarkup).join("");
 list.insertAdjacentHTML("beforeend", markup);
+
+
+list.addEventListener("click", (event) => {
+  console.log(event.target.dataset.source);
+});
