@@ -85,7 +85,14 @@ const createMarkup = (images) => {
 const markup = images.map(createMarkup).join("");
 list.insertAdjacentHTML("beforeend", markup);
 
-
 list.addEventListener("click", (event) => {
   console.log(event.target.dataset.source);
 });
+
+import * as basicLightbox from "basiclightbox";
+
+const instance = basicLightbox.create(`
+    <img src=${images.original} width="800" height="600">
+`);
+
+instance.show();
