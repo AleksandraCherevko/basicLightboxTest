@@ -65,8 +65,6 @@ const images = [
 ];
 
 const list = document.querySelector(".gallery");
-const gallery = document.querySelector("ul.gallery");
-const image = document.querySelector(".gallery-image");
 
 const createMarkup = (images) => {
   return `<li class="gallery-item">
@@ -86,13 +84,14 @@ const markup = images.map(createMarkup).join("");
 list.insertAdjacentHTML("beforeend", markup);
 
 list.addEventListener("click", (event) => {
-  console.log(event.target.dataset.source);
-});
+  event.preventDefault();
+  if (event.target === event.currentTarget) {
+    return;
+  }
 
-import * as basicLightbox from "basiclightbox";
-
-const instance = basicLightbox.create(`
-    <img src=${images.original} width="800" height="600">
+  const instance = basicLightbox.create(`
+    <img src=${event.target.dataset.source} width="800" height="600">
 `);
 
-instance.show();
+  instance.show();
+});
